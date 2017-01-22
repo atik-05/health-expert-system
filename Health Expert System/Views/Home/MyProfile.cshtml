@@ -1,0 +1,222 @@
+﻿<script src="~/Scripts/Angular/HomeCtrl.js"></script>
+
+<div ng-app="systemApp" ng-controller="homeCtrl">
+
+<div ng-show="userProfile.Type=='Patient'">
+    <div ng-show="!edit">
+        <div class="row">
+            <div class="col-md-3">
+                <label>Name</label>
+            </div>
+            <div class="col-md-4">
+                {{userProfile.Name}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Age</label>
+            </div>
+            <div class="col-md-4">
+                {{userProfile.Age}} year
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Occupation</label>
+            </div>
+            <div class="col-md-4">
+                {{userProfile.Occupation}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Monthly Income</label>
+            </div>
+            <div class="col-md-4">
+                {{userProfile.MonthlyIncome}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Lifestyle Status</label>
+            </div>
+            <div class="col-md-4">
+                {{userProfile.LifestyleStatus}}
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="edit">
+        <div class="row">
+            <div class="col-md-3">
+                <label>Name</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" ng-model="userProfile.Name" value="{{userProfile.Name}}"/><br/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Age</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" ng-model="userProfile.Age" value="{{userProfile.Age}}"/><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Occupation</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" ng-model="userProfile.Occupation" value="{{userProfile.Occupation}}"/><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Monthly Income</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" ng-model="userProfile.MonthlyIncome" value="{{userProfile.MonthlyIncome}}"/><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Lifestyle Status</label>
+            </div>
+            <div class="col-md-4">
+                <select ng-model="userProfile.LifestyleStatus" class="form-control">
+                    <option value="poor">Poor</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div ng-show="userProfile.Type=='Doctor'">
+        <div ng-show="!edit">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Name</label>
+                </div>
+                <div class="col-md-4">
+                    {{userProfile.Name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Specialist of </label>
+                </div>
+                <div class="col-md-4">
+                    {{userProfile.Specialist}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Year of Experience</label>
+                </div>
+                <div class="col-md-4">
+                    {{userProfile.YearOfExperience}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Visiting Fee</label>
+                </div>
+                <div class="col-md-4">
+                    {{userProfile.VisitingFee}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Rating</label>
+                </div>
+                <div class="col-md-4">
+                    {{userProfile.Rating}}
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="edit">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Name</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" ng-model="userProfile.Name" value="{{userProfile.Name}}" /><br />
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Year of Experience</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" ng-model="userProfile.YearOfExperience" value="{{userProfile.YearOfExperience}}" /><br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Visiting Fee</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" ng-model="userProfile.VisitingFee" value="{{userProfile.VisitingFee}}" /><br />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div ng-show="userProfile.Type=='Hospital'">
+        <div ng-show="!edit">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Name</label>
+                </div>
+                <div class="col-md-4">
+                    {{userProfile.Name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Cabin Fee</label>
+                </div>
+                <div class="col-md-4">
+                    {{userProfile.CabinFee}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Rating</label>
+                </div>
+                <div class="col-md-4">
+                    {{userProfile.Rating}}
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="edit">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Name</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" ng-model="userProfile.Name" value="{{userProfile.Name}}"/><br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Cabin Fee</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" ng-model="userProfile.CabinFee" value="{{userProfile.CabinFee}}" /><br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+
+    <div ng-show="editButton" class="btn btn-primary sidebutton" ng-click="editProfile()">Edit Profile</div>
+    <div ng-show="saveButton" class="btn btn-primary sidebutton" ng-click="saveProfile()">Save Changes</div>
+
+</div>

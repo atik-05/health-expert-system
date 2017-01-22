@@ -1,0 +1,167 @@
+﻿<script src="~/Scripts/Angular/SuggestionCtrl.js"></script>
+<script src="~/Scripts/Angular/PatientService.js"></script>
+
+<div ng-app="systemApp" ng-controller="suggestionCtrl">
+
+    <div ng-show="detectLocation">
+        <div ng-show="!showMap">
+            
+            Are you at {{location}} ?<br /><br />
+            <button class="btn btn-primary" ng-click="confirmLocation()">Yes</button>&nbsp
+            <button class="btn btn-primary" ng-click="editLocation()">No</button>
+        </div>
+
+
+        <div ng-show="showMap">
+            Please click on your location<br /><br />
+            <input id="pac-input" class="col-md-3 input-sm" type="text" placeholder="Search Box">
+            <div class="container" id="selectLocation" style="width: 93%; height: 450px;"></div><br />
+            <div class="btn btn-primary mapBottom" ng-click="confirmLocation()">Next</div><br />
+
+        </div><br /><br />
+    </div>
+
+
+    <div ng-show="isDecide">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="requiredData.IsEmergency" ng-change="checkEmergency()" /> Check if emergency
+            </label>
+        </div><br /><br/>
+        <div class="row" ng-show="showMode">
+            <label class="col-md-3">select suggestion type</label>
+            <div class="col-md-5">
+                <select ng-model="requiredData.SuggestionTypeId" ng-change="suggestionMode()" class="form-control">
+                    <option selected value="1">Patient Preference</option>
+                    <option value="2">Collaborative Suggestion</option>
+                </select>
+            </div>
+        </div><br/>
+
+        <div ng-show="isCurrentUserChild">
+            <h2>Children</h2>
+            <button ng-disabled="!isCompleteProcess" ng-click="suggestion()" class="btn btn-success">OK</button>
+        </div>
+
+        <div ng-show="!isCurrentUserChild">
+
+            <div class="row">
+                <label class="col-md-3">Select disease...</label>
+                <div class="col-md-5">
+                    <select ng-model="requiredData.SymptomId" ng-options="obj.Id as obj.Name for obj in symptoms"
+                            ng-change="getDerivedSymptom()" class="form-control">
+                        <option value="">Choose symptom</option>
+
+                    </select>
+                </div>
+            </div><br/>
+
+            <div class="row" ng-show="result">
+                <label class="col-md-3">Select more specific disease...</label>
+                <div class="col-md-5">
+                    <select ng-model="requiredData.DerivedSymptomId" ng-options="obj.Id as obj.Name for obj in result"
+                            ng-click="complete()" class="form-control">
+                        <option value="">Choose derived symptom</option>
+
+                    </select>
+                </div>
+            </div><br/>
+            <button ng-disabled="!isSelected || !isCompleteProcess" ng-click="suggestion()" class="btn btn-success sidebutton">Suggest</button>
+        </div>
+    </div>
+
+
+
+    <div ng-show="showResult">
+        <div class="row">
+            <div class="col-md-6">
+                Your suitable doctor or hospital are shown below.<br /><br />
+                <div ng-repeat="doctor in doctors">
+                    <div ng-show="doctor.Type=='Doctor'">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-md-3">Doctor Name:</div>
+                                    <div class="col-md-2">{{doctor.Name}}</div>
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-success" ng-click="selectProvider(doctor.ServiceProviderId)">Select Doctor</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3">Specialist of:</div>
+                                    <div class="col-md-2">{{doctor.Specialist}}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Visiting Fee:</div>
+                                    <div class="col-md-2">{{doctor.Fee}}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Address:</div>
+                                    <div class="col-md-8">{{doctor.Address}}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Distance:</div>
+                                    <div class="col-md-2">{{doctor.Distance}} &nbsp;km</div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+
+
+                                <button type="button" ng-click="showDirection(doctor.Address)" class="btn btn-primary" style="align-self: center">
+                                    Show direction in Map
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div ng-show="doctor.Type=='Hospital'">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-md-3">Hospital Name:</div>
+                                    <div class="col-md-6">{{doctor.Name}}</div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-success" ng-click="selectProvider(doctor.ServiceProviderId)">Select Hospital</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-5">Cabin Fee/Registration Fee:</div>
+                                    <div class="col-md-2">{{doctor.Fee}}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Address:</div>
+                                    <div class="col-md-8">{{doctor.Address}}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Distance:</div>
+                                    <div class="col-md-2">{{doctor.Distance}} &nbsp; km</div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="button" ng-click="showDirection(doctor.Address)" class="btn btn-primary" style="align-self: center">
+                                    Show direction in Map
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div><br />
+            </div>
+            @*<div class="col-md-1"></div>*@
+
+            <div class="col-md-5">
+                <div class="container" id="mapDirection" style="width: 520px; height: 530px;"></div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</div>

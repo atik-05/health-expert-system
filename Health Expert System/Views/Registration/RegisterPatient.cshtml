@@ -1,0 +1,120 @@
+﻿<script src="~/Scripts/Angular/PatientRegistrationController.js"></script>
+@{
+    ViewBag.Title = "RegisterPatient";
+}
+
+<h2>Patient Ragistration</h2>
+
+<div ng-app="systemApp" ng-controller="registrationController">
+
+    <div ng-show="!loading">
+        <div ng-show="checkUser">
+            <div class="alert alert-warning" ng-show="userNameExist">
+                <strong>Duplicate!</strong> This user name already exist. Please change the user.
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label>User Name (unique)</label>
+
+                </div>
+                <div class="col-md-5">
+                    <input type="text" ng-model="PatientProfile.UserName" class="form-control" /><br/>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Password</label>
+
+                </div>
+                <div class="col-md-5">
+                    <input type="password" ng-model="PatientProfile.Password" class="form-control" /><br />
+
+                </div>
+            </div>
+
+            <div class="btn btn-primary sidebutton" ng-click="checkUser()">Next</div>
+        </div>
+        <div ng-show="!checkUser">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Your Name</label>
+
+                </div>
+                <div class="col-md-5">
+                    <input type="text" ng-model="PatientProfile.Name" class="form-control" /><br />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Gender</label>
+
+                </div>
+                <div class="col-md-5">
+                    <select ng-model="PatientProfile.Gender" class="form-control">
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select><br />
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Age</label>
+
+                </div>
+                <div class="col-md-5">
+                    <input type="text" ng-model="PatientProfile.Age" class="form-control" /><br />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Occupation</label>
+
+                </div>
+                <div class="col-md-5">
+                    <input type="text" ng-model="PatientProfile.Occupation" class="form-control" /><br />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Monthly Income</label>
+
+                </div>
+                <div class="col-md-5">
+                    <input type="text" ng-model="PatientProfile.MonthlyIncome" class="form-control" /><br />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Your Lifestyle Status</label>
+
+                </div>
+                <div class="col-md-5">
+                    <select ng-model="PatientProfile.LifestyleStatus" class="form-control">
+                        <option value="poor">Poor</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="high">High</option>
+                    </select>
+                    <br />
+                </div>
+            </div><br/>
+            
+            <div ng-click="register()" class="btn btn-primary sidebutton">register</div>
+        </div>
+    </div>
+
+    <div ng-show="loading">
+        <img src="~/image/loading.gif" alt="Loading ..." />
+    </div>
+
+</div>
+
+
+
+

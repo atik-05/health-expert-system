@@ -1,0 +1,24 @@
+﻿
+<script src="~/Scripts/MyScript/mapCtrl.js">
+</script>
+@{
+    ViewBag.Title = "ShowPresentLocation";
+}
+
+<h2>ShowPresentLocation</h2>
+<div ng-app="mapApp" ng-controller="mapCtrl" >
+    <div ng-show="showMap">
+        <div ng-click="loadMap()" class="btn btn-info">map</div>
+
+        <div class="btn btn-info" ng-click="addInfo()">Add Info</div>
+
+        <div id="sample" style="width: 570px; height: 580px;"></div>
+    </div>
+
+    <div ng-show="!showMap">
+        Name
+        <input ng-model="Name" class="form-control"/>
+    </div>
+
+
+</div>

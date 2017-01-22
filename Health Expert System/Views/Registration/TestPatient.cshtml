@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "TestPatient";
+}
+
+<h2>TestPatient</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div style="padding: 35px 55px;">
+
+        <div class="row">
+            <div class="col-xs-12">
+
+
+                <input class="form-control" name="UserName" placeholder="User Name" />
+                <input class="form-control" type="password" name="Password" placeholder="Password" />
+                <input type="submit" value="register"/>
+            </div>
+
+        </div>
+
+
+
+       
+    </div>
+}
+
+@if (WebSecurity.IsAuthenticated)
+{
+    <h4>Please register first .</h4>
+    <label>Register as a</label><br />
+    <a href="/Registration/RegisterPatient"><button class="btn btn-primary">Patient </button></a><br /><br />
+    <a href="/Registration/RegisterDoctor"><button class="btn btn-primary">Doctor </button></a><br /><br />
+    <a href="#"><button class="btn btn-primary">Hospital </button></a><br />
+
+}
+
+@if (Request.IsAuthenticated)
+{
+  using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+  {
+    @Html.AntiForgeryToken()
+    <a href="javascript:document.getElementById('logoutForm').submit()">logoff<i class="fa fa-power-off"></i></a>
+  }
+
+}

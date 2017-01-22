@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Health Expert System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDjytYcsnSZLOhgyZdSOUoUeSNaIRPHMdE&libraries=places"></script>
+    <script src="~/Scripts/Angular/SystemApp.js"></script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse ">
+        <div class="container-fluid navbar-custom">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Home/Index" style="color: white">Health Expert System</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    @*<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>*@
+                    @RenderSection("scripts", required: false)
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid text-center">
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+                @if (WebSecurity.IsAuthenticated)
+            {
+                <br/><br/>
+                    if (Roles.IsUserInRole("Patient"))
+                    {
+                        <a href="/Suggestion/SuggestServiceProvider" class="btn btn-success sidebutton">Suggestion</a><br /><br />
+                        <a href="/Home/Search" class="btn btn-success sidebutton">Search</a><br /><br />
+                        <a href="/Home/Index" class="btn btn-success sidebutton">Treatment History</a><br/><br/>
+                        <a href="/Home/MyProfile" class="btn btn-success sidebutton">My Profile</a><br /><br />
+                    }
+                    else
+                    {
+                        <a href="/Home/MyProfile" class="btn btn-success sidebutton">My Profile</a><br /><br />
+                    }
+
+
+                }
+            </div>
+
+            <div class="col-sm-10 text-left">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-fluid text-center">
+        <p>&copy; @DateTime.Now.Year - Health Expert System</p>
+    </footer>
+
+</body>
+</html>
+

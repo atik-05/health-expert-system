@@ -1,0 +1,43 @@
+﻿@using Health_Expert_System.Models
+@model LoginViewModel
+
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div style="padding: 35px 55px;">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p class="text-muted" style="list-style-type: none;">@Html.ValidationSummary(true)</p>
+
+                            <div class="row">
+                                <div class="col-md-2">User Name</div>
+                                <div class="col-md-6">
+                                    <input class="form-control" name="UserName" placeholder="User Name"/><br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">Password</div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="password" name="Password" placeholder="Password" /><br />
+                                </div>
+                            </div>
+                            <input type="submit" value="log in" class="btn btn-primary sidebutton"/>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

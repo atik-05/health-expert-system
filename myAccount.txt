@@ -1,0 +1,29 @@
+bitbucket
+
+hg clone https://Atik_Rahman@bitbucket.org/Atik_Rahman/health-expert-system
+
+
+
+name, id, password
+
+Atik Rahman, atik0521, atik0521
+fuad ahmed, fuad, fuad
+atik, atik, atik
+tahmim jeba, tahmim, tahmim
+
+
+Rangpur medical college, RangpurGeneral, rangpur
+Dhaka medical college, dhakamedical, dhakamedical
+Comilla medical college, comillamedical, comillamedical
+Sylhet medical college, sylhetmedical, sylhet
+Barisal medical college, barisalmedical, barisalmedical
+Khulna medical college, khulnamedical, khulnamedical
+Birdem Hospital, birdem, birdem
+Bongobondhu medical university, pghospital, pghospital
+
+
+Dr. Jayed, drjayed, drjayed
+Dr. Dipok, drdipok, dipok
+Dr. Ruddro, drrudro, ruddro
+Dr. Shaon, drshaon, shaon
+

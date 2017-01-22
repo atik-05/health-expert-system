@@ -1,0 +1,111 @@
+﻿<script src="~/Scripts/Angular/HospitalRegistrationController.js"></script>
+<div ng-app="systemApp" ng-controller="hospitalController" ng-init="loadMap()">
+
+    <div ng-show="showMap">
+        Please click on your location<br/>
+        <input id="pac-input" class="col-md-3 input-sm" type="text" placeholder="Search Box">
+        <div class="container" id="selectLocation" style="width: 93%; height: 440px;"></div><br/>
+        <div class="btn btn-primary mapBottom" ng-click="fillForm()">Next</div><br/>
+    </div>
+
+    <div ng-show="form">
+
+        <div ng-show="!loading">
+            <div ng-show="checkHospital">
+                <div class="alert alert-warning" ng-show="userNameExist">
+                    <strong>Duplicate!</strong> This user name already exist. Please change the user.
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>User Name (unique)</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" ng-model="HospitalProfile.UserName" class="form-control" /><br/>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Password</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="password" ng-model="HospitalProfile.Password" class="form-control" /><br />
+
+                    </div>
+                </div>
+
+                <div class="btn btn-primary sidebutton" ng-click="checkUser()">Next</div>
+            </div>
+            <div ng-show="!checkHospital">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Hospital Name</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" ng-model="HospitalProfile.Name" class="form-control" /><br />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Select Hospital Type: </label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <select ng-model="HospitalProfile.HospitalTypeId" class="form-control">
+                            <option value="1">General</option>
+                            <option value="2">Diagnostic Center</option>
+                            <option value="3">Specialized Hospital</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div ng-show="HospitalProfile.HospitalTypeId == 2 || HospitalProfile.HospitalTypeId == 3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Select which specialist exist in this hospital</label>
+
+                        </div>
+                        <div class="col-md-5">
+                            <div ng-repeat="sp in specialists">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="{{sp.Id}}" ng-model="isChecked" ng-change="addSpecialist(isChecked, sp.Id)" />{{sp.Name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><br/>
+
+                <div class="checkbox">
+                    <label><input type="checkbox" ng-model="HospitalProfile.IsGovt" />Check if government hospital</label><br /><br/>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Normal cabin fee per day</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" ng-model="HospitalProfile.CabinFee" class="form-control" /><br />
+
+                    </div>
+                </div><br/>
+
+                <div ng-disabled="userNameExist" ng-click="register()" class="btn btn-primary sidebutton">register</div>
+            </div>
+        </div>
+
+        <div ng-show="loading">
+            <img src="~/image/loading.gif" alt="Loading ..." />
+        </div>
+
+    </div>
+</div>
+

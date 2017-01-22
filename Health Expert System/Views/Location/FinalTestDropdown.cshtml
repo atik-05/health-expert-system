@@ -1,0 +1,30 @@
+﻿<script src="~/Scripts/MyScript/TestCtrl.js"></script>
+@{
+    ViewBag.Title = "FinalTestDropdown";
+}
+
+<h2>Final Test Dropdown</h2>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+
+    <select ng-model="disease.symptomId" ng-options="obj.Id as obj.Name for obj in symptoms"
+            ng-change="getDerivedSymptom()" class="form-control">
+        <option value="">Choose symptom</option>
+
+    </select>
+
+    <select ng-model="disease.derivedSymptomId" ng-options="obj.Id as obj.Name for obj in result"
+            ng-click="complete()" class="form-control" ng-show="result">
+        <option value="">Choose derived symptom</option>
+
+    </select>
+
+    <button ng-disabled="okButton" class="btn btn-success">OK</button>
+
+
+
+    <div>symptomId: {{disease.symptomId}}, derivedSymptomId: {{disease.derivedSymptomId}}</div>
+
+</div>
+

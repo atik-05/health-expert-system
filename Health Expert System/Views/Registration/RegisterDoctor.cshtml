@@ -1,0 +1,131 @@
+﻿<script src="~/Scripts/Angular/DoctorRegistrationController.js"></script>
+
+<div ng-app="systemApp" ng-controller="doctorController"  ng-init="loadMap()">
+
+    <div ng-show="showMap">
+        Please click on your location<br/>
+        <input id="pac-input" class="col-md-3 input-sm" type="text" placeholder="Search Box">
+        <div class="container" id="selectLocation" style="width: 93%; height: 440px;"></div><br/>
+        <div class="btn btn-primary mapBottom" ng-click="fillForm()">Next</div><br/>
+    </div><br/>
+
+    <div ng-show="form">
+
+        <div ng-show="!loading">
+            <div ng-show="checkDoctor">
+                <div class="alert alert-warning" ng-show="invalidRegister">
+                    <strong>Invalid!</strong> This registration number is invalid.
+                </div>
+                <div class="alert alert-warning" ng-show="userNameExist">
+                    <strong>Duplicate!</strong> This user name or registration number already exist. Please change the user.
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Registration Number</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" ng-model="DoctorProfile.RegistrationNumber" class="form-control" /><br />
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>User Name (unique)</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" ng-model="DoctorProfile.UserName" class="form-control" /><br/>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Password</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="password" ng-model="DoctorProfile.Password" class="form-control" /><br />
+
+                    </div>
+                </div>
+
+                <div class="btn btn-primary sidebutton" ng-click="checkUser()">Next</div>
+            </div>
+            <div ng-show="!checkDoctor">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Your Name</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" ng-model="DoctorProfile.Name" class="form-control" /><br />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Your Expertise Field</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <select ng-model="DoctorProfile.SpecialistId" ng-options="sp.Id as sp.Name for sp in specialists" class="form-control">
+                            <option value="">choose field</option>
+                        </select><br />
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Year of Experience</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" ng-model="DoctorProfile.YearOfExperience" class="form-control" /><br />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Visiting Fee</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" ng-model="DoctorProfile.VisitingFee" class="form-control" /><br />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Your patient visiting start time</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="time" ng-model="startTime" class="form-control" /><br/>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Your patient visiting end time</label>
+
+                    </div>
+                    <div class="col-md-5">
+                        <input type="time" ng-model="endTime" ng-change="setTimeFormat()" class="form-control" /><br/>
+
+                    </div>
+                </div>
+                <br/>
+                <div ng-disabled="userNameExist" ng-click="register()" class="btn btn-primary sidebutton">register</div>
+            </div>
+        </div>
+
+        <div ng-show="loading">
+            <img src="~/image/loading.gif" alt="Loading ..." />
+        </div>
+
+    </div>
+
+
+</div>
+

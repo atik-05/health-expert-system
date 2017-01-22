@@ -1,0 +1,60 @@
+﻿<script src="~/Scripts/MyScript/map.js"></script>
+@{
+    ViewBag.Title = "TestDropdown";
+}
+
+<h2>Test Dropdown</h2>
+
+<div ng-app="myApp" ng-controller="dropdownCtrl">
+
+    <div class="row">
+        <label class="col-sm-2">Customer Name </label>
+        <div class="col-sm-7">
+            <input ng-model="customer.Name" type="text" class="form-control" />
+        </div>
+    </div><br />
+
+    <div class="row">
+        <label class="col-sm-2">Country </label>
+        <div class="col-sm-7">
+            <select ng-model="customer.Country" ng-options="obj.id as obj.country for obj in countries"
+                    ng-change="getCountryStates()" class="form-control">
+                <option value="">-- Choose Country --</option>
+            </select>
+        </div>
+    </div><br/>
+
+    <div class="row">
+        <label class="col-sm-2">State </label>
+        <div class="col-sm-7">
+            <select ng-disabled="!customer.Country" ng-model="customer.State" ng-options="x.Id as x.state for x in sates"
+                    ng-change="getStateCities()" class="form-control" >
+                <option value="">-- Choose State --</option>
+            </select>
+        </div>
+    </div><br/>
+
+    <div class="row">
+        <label class="col-sm-2">City </label>
+        <div class="col-sm-7">
+            <select ng-disabled="!customer.State" ng-model="customer.City" ng-options="x.Id as x.city for x in cities"
+                    class="form-control" >
+                <option value="">-- Choose City --</option>
+            </select>
+        </div>
+    </div><br/>
+        <button class="btn btn-success">  Save  </button>
+    
+    <div class="form-group">
+        <div class="col-lg-offset-2">
+            <b>name:</b> {{customer.Name}}
+            <b>Country:</b> {{customer.Country}}
+            <b>State:</b> {{customer.State}}
+            <b>City:</b> {{customer.City}}
+        </div>
+    </div>
+
+
+
+</div>
+

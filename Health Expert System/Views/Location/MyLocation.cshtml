@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 50px;
+            padding: 50px;
+        }
+
+        #map {
+            height: 100%;
+        }
+    </style>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWYuygWRzKHqFP584njOuqAxTtzPYfNjM&callback=initMap">
+    </script>
+    <script src="~/Scripts/MyScript/map.js">
+    </script>
+   
+</head>
+<body>
+    <div id="map"></div>
+    <br />
+<div>
+    Your latitude: <div id="lati"></div>
+</div>
+    
+</body>
+</html>

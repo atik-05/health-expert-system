@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welcome to the Health Expert System</h2><br />
+
+@if (! WebSecurity.IsAuthenticated)
+{
+    <h4>Please register first if you are a new user.</h4><br/>
+    <label>Register as a</label><br/>
+    <div class="row">
+        <div class="col-md-2">
+            <a href="/Registration/RegisterPatient"><button class="btn btn-primary">Patient </button></a><br /><br />
+        </div>
+        <div class="col-md-2">
+            <a href="/Registration/RegisterDoctor"><button class="btn btn-primary">Doctor </button></a><br /><br />
+        </div>
+        <div class="col-md-2">
+            <a href="/Registration/RegisterHospital"><button class="btn btn-primary">Hospital </button></a><br />
+        </div>
+    </div>
+
+}
+
+
+@if (Roles.IsUserInRole("Patient"))
+{
+    
+    var name = WebSecurity.CurrentUserName;
+    <div> patient name is @name. this is patient area</div>
+}
+else if (Roles.IsUserInRole("Doctor"))
+{
+    
+}
+else if (Roles.IsUserInRole("Hospital"))
+{
+    
+}

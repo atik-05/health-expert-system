@@ -1,0 +1,44 @@
+﻿<script src="~/Scripts/Angular/SearchCtrl.js"></script>
+<script src="~/Scripts/Angular/PatientService.js"></script>
+
+<h3>Search Doctor/Hospital</h3><br/>
+
+<div ng-app="systemApp" ng-controller="searchCtrl">
+
+    <label>Search by any field <input type="text" ng-model="search.$"/></label><br/><br/>
+    <div class="row">
+        <div class="col-md-4">
+            <label>Search by name</label>&nbsp;<input type="text" ng-model="search.Name" />
+        </div>
+        <div class="col-md-4">
+            <label>Search by specialist</label>&nbsp;<input type="text" ng-model="search.Specialist" />
+        </div>
+        <div class="col-md-4">
+            <label>Search by location</label>&nbsp;<input type="text" ng-model="search.Address" />
+        </div>
+    </div><br/><br/>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Expertise Field</th>
+            <th>Address</th>
+            <th>Distance(km)</th>
+            <th>Rating</th>
+            <th>Fee</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="provider in providerDatas | filter: search">
+            <td>{{provider.Name}}</td>
+            <td>{{provider.Specialist}}</td>
+            <td>{{provider.Address}}</td>
+            <td>{{provider.Distance}}</td>
+            <td>{{provider.Rating}}</td>
+            <td>{{provider.Fee}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,16 @@
+﻿<script src="~/Scripts/MyScript/nearLocation.js"></script>
+@{
+    ViewBag.Title = "ShowNearLocation";
+}
+
+<h2>ShowNearLocation</h2>
+
+<div ng-controller="nearLocation">
+    <div class="btn btn-info" ng-click="initMap()">show locations</div>
+
+    The straight distance is {{distance}}<br/>
+    the driving distance is {{driving}}
+
+    <div id="map" style="width: 570px; height: 580px;"></div>
+</div>
+
